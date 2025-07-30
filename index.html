@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primosyr - قريباً</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #4caf50;
+            --accent: #ff8f00;
+            --light: #f1f8e9;
+            --dark: #263238;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            text-align: center;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(46, 125, 50, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 90% 80%, rgba(255, 143, 0, 0.08) 0%, transparent 25%),
+                linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(8px);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(241, 248, 233, 0.6);
+            overflow: hidden;
+            margin: 20px;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(46, 125, 50, 0.03);
+            z-index: -1;
+        }
+        
+        .container::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 143, 0, 0.03);
+            z-index: -1;
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 12px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lang-btn {
+            background: rgba(46, 125, 50, 0.1);
+            border: 1px solid rgba(46, 125, 50, 0.2);
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background: rgba(46, 125, 50, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            margin-bottom: 35px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-text::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(255, 143, 0, 0.3);
+        }
+        
+        .logo-sub {
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--primary);
+            opacity: 0.85;
+            margin-top: 12px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.7rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .highlight {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(255, 143, 0, 0.2);
+        }
+        
+        .highlight::after {
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            border-radius: 3px;
+            box-shadow: 0 4px 8px rgba(255, 143, 0, 0.3);
+        }
+        
+        .description {
+            font-size: 1.35rem;
+            max-width: 700px;
+            margin: 0 auto 45px;
+            line-height: 1.85;
+            color: #455a64;
+            font-weight: 400;
+        }
+        
+        .contact-section {
+            background: linear-gradient(120deg, var(--primary-light), var(--primary));
+            padding: 30px;
+            border-radius: 18px;
+            margin: 35px 0;
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(46, 125, 50, 0.4);
+        }
+        
+        .contact-section::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .contact-section::after {
+            content: "";
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-title {
+            font-size: 1.7rem;
+            margin-bottom: 22px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .contact-title i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        .email-link {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 18px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            margin: 12px 0;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(4px);
+        }
+        
+        .email-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-note {
+            font-size: 1.2rem;
+            margin-top: 18px;
+            opacity: 0.92;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin: 45px 0;
+        }
+        
+        .feature {
+            flex: 1;
+            min-width: 220px;
+            background: white;
+            padding: 30px 25px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(241, 248, 233, 0.8);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .feature::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .feature:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-light);
+        }
+        
+        .feature:hover::before {
+            opacity: 1;
+        }
+        
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(46, 125, 50, 0.12);
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature:hover .feature-icon {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 15px rgba(46, 125, 50, 0.3);
+        }
+        
+        .feature-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-desc {
+            font-size: 1.1rem;
+            color: #546e7a;
+            line-height: 1.7;
+        }
+        
+        .countdown {
+            margin: 35px 0;
+            padding: 25px;
+            background: rgba(241, 248, 233, 0.6);
+            border-radius: 18px;
+            border: 1px solid rgba(46, 125, 50, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .countdown-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            min-width: 100px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(46, 125, 50, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--primary);
+            margin-top: 8px;
+            font-weight: 600;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 1.6rem;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-8px) scale(1.15);
+            background: var(--accent);
+            box-shadow: 0 10px 25px rgba(255, 143, 0, 0.35);
+        }
+        
+        .copyright {
+            margin-top: 45px;
+            font-size: 1rem;
+            color: #78909c;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* زر سياسة الخصوصية */
+        .privacy-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--primary-dark);
+            border: 1px solid rgba(46, 125, 50, 0.3);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .privacy-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.2);
+        }
+        
+        /* شارة Cloudflare */
+        .cloudflare-badge {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(248, 249, 250, 0.8);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #212529;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cloudflare-badge img {
+            height: 20px;
+            width: auto;
+        }
+        
+        /* اللغة الإنجليزية */
+        .lang-en {
+            display: none;
+        }
+        
+        .lang-en h1,
+        .lang-en .description,
+        .lang-en .contact-title,
+        .lang-en .contact-note,
+        .lang-en .feature-title,
+        .lang-en .feature-desc,
+        .lang-en .countdown-title,
+        .lang-en .countdown-label,
+        .lang-en .copyright {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .lang-en .logo-sub {
+            letter-spacing: 5px;
+        }
+        
+        /* تأثيرات متحركة */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* تحسينات التجاوب */
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 25px;
+                margin: 15px;
+            }
+            
+            .logo-text {
+                font-size: 3rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .description {
+                font-size: 1.2rem;
+            }
+            
+            .email-link {
+                font-size: 1.2rem;
+                padding: 15px 25px;
+            }
+            
+            .feature {
+                min-width: 100%;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px;
+            }
+            
+            .countdown-value {
+                font-size: 2rem;
+            }
+            
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+                padding: 6px 10px;
+            }
+            
+            .privacy-btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .contact-section {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .logo-sub {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .description {
+                font-size: 1.05rem;
+                padding: 0 10px;
+            }
+            
+            .contact-title {
+                font-size: 1.4rem;
+            }
+            
+            .email-link {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+            
+            .feature {
+                padding: 25px 20px;
+            }
+            
+            .countdown-container {
+                gap: 12px;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 12px;
+            }
+            
+            .countdown-value {
+                font-size: 1.8rem;
+            }
+            
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .container {
+                padding: 25px 15px;
+            }
+            
+            .logo-text {
+                font-size: 2.2rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+            
+            .countdown-container {
+                gap: 8px;
+            }
+            
+            .countdown-item {
+                min-width: 60px;
+                padding: 10px;
+            }
+            
+            .countdown-value {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="ar">
+            <i class="fas fa-language"></i> العربية
+        </button>
+        <button class="lang-btn" data-lang="en">
+            <i class="fas fa-language"></i> English
+        </button>
+    </div>
+    
+    <div class="container">
+        <div class="logo floating">
+            <div class="logo-text">Primosyr</div>
+            <div class="logo-sub">AGRICULTURAL INDUSTRIES</div>
+        </div>
+        
+        <!-- المحتوى العربي -->
+        <div class="lang-content lang-ar">
+            <h1 class="fade-in">الموقع قيد التطوير وسيعود <span class="highlight">قريباً</span> بحلة جديدة</h1>
+            
+            <p class="description fade-in">
+                نعمل بجد لتطوير موقعنا الإلكتروني الجديد الذي سيكون مليئاً بالميزات الرائعة 
+                والمحتوى القيم الذي يلبي جميع احتياجات عملائنا الكرام. نسعى لتقديم تجربة 
+                استثنائية تعكس جودة منتجاتنا وخدماتنا.
+            </p>
+            
+            <div class="contact-section pulse fade-in">
+                <div class="contact-title">
+                    <i class="fas fa-envelope"></i>
+                    للتواصل مع الإدارة
+                </div>
+                <a href="mailto:admin@primosyr.com" class="email-link">
+                    admin@primosyr.com
+                </a>
+                <p class="contact-note">سوف نرد على استفساراتكم خلال 24 ساعة</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="feature-title">حلول زراعية متكاملة</h3>
+                    <p class="feature-desc">نقدم أحدث التقنيات والحلول الزراعية لتحقيق أعلى إنتاجية وجودة للمحاصيل</p>
+                </div>
+                
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 class="feature-title">منتجات صناعية عالية الجودة</h3>
+                    <p class="feature-desc">منتجاتنا الصناعية تحمل شهادات الجودة العالمية وتلبي أعلى المعايير</p>
+                </div>
+                
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">دعم فني متكامل</h3>
+                    <p class="feature-desc">فريق دعم فني متاح على مدار الساعة لخدمتكم وتلبية احتياجاتكم</p>
+                </div>
+            </div>
+            
+            <div class="countdown fade-in">
+                <div class="countdown-title">الإطلاق المتوقع خلال:</div>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-value">30</div>
+                        <div class="countdown-label">يوم</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">12</div>
+                        <div class="countdown-label">ساعة</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">45</div>
+                        <div class="countdown-label">دقيقة</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">30</div>
+                        <div class="countdown-label">ثانية</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links fade-in">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <div class="copyright fade-in">
+                © 2025 Primosyr Agricultural Industries. جميع الحقوق محفوظة.
+            </div>
+            
+            <!-- زر سياسة الخصوصية -->
+            <div class="fade-in">
+                <button class="privacy-btn" id="show-privacy">
+                    <i class="fas fa-shield-alt"></i> سياسة الخصوصية
+                </button>
+            </div>
+            
+            <!-- شارة Cloudflare -->
+            <div class="cloudflare-badge fade-in">
+                <img src="https://www.cloudflare.com/resources/images/slt3lc6tev37/4E5bHZb0N3vq1lTdDcX8d3/8d7d9d1c0f4b9b8a8a8a8a8a8a8a8a8a/cloudflare-badge.svg" alt="Cloudflare">
+                <span>محمي بواسطة Cloudflare</span>
+            </div>
+        </div>
+        
+        <!-- English Content -->
+        <div class="lang-content lang-en">
+            <h1 class="fade-in">Website Under Development <span class="highlight">Coming Soon</span> With a New Look</h1>
+            
+            <p class="description fade-in">
+                We are working diligently to develop our new website which will be full of amazing features 
+                and valuable content to meet all the needs of our valued customers. We strive to deliver 
+                an exceptional experience that reflects the quality of our products and services.
+            </p>
+            
+            <div class="contact-section pulse fade-in">
+                <div class="contact-title">
+                    <i class="fas fa-envelope"></i>
+                    Contact Management
+                </div>
+                <a href="mailto:admin@primosyr.com" class="email-link">
+                    admin@primosyr.com
+                </a>
+                <p class="contact-note">We will respond to your inquiries within 24 hours</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="feature-title">Comprehensive Agricultural Solutions</h3>
+                    <p class="feature-desc">We provide the latest agricultural technologies and solutions to achieve the highest productivity and crop quality</p>
+                </div>
+                
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 class="feature-title">High-Quality Industrial Products</h3>
+                    <p class="feature-desc">Our industrial products carry international quality certificates and meet the highest standards</p>
+                </div>
+                
+                <div class="feature fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Full Technical Support</h3>
+                    <p class="feature-desc">Technical support team available 24/7 to serve you and meet your needs</p>
+                </div>
+            </div>
+            
+            <div class="countdown fade-in">
+                <div class="countdown-title">Expected Launch In:</div>
+                <div class="countdown-container">
+                    <div class="countdown-item">
+                        <div class="countdown-value">30</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">12</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">45</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-value">30</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links fade-in">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <div class="copyright fade-in">
+                © 2025 Primosyr Agricultural Industries. All Rights Reserved.
+            </div>
+            
+            <!-- Privacy Policy Button -->
+            <div class="fade-in">
+                <button class="privacy-btn" id="show-privacy-en">
+                    <i class="fas fa-shield-alt"></i> Privacy Policy
+                </button>
+            </div>
+            
+            <!-- Cloudflare Badge -->
+            <div class="cloudflare-badge fade-in">
+                <img src="https://www.cloudflare.com/resources/images/slt3lc6tev37/4E5bHZb0N3vq1lTdDcX8d3/8d7d9d1c0f4b9b8a8a8a8a8a8a8a8a8a/cloudflare-badge.svg" alt="Cloudflare">
+                <span>Protected by Cloudflare</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تحسينات كود JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحسين تبديل اللغة
+            const langBtns = document.querySelectorAll('.lang-btn');
+            const langContents = document.querySelectorAll('.lang-content');
+            
+            // تحديد اللغة الأولية
+            let currentLang = localStorage.getItem('primosyr-lang') || 'ar';
+            setActiveLanguage(currentLang);
+            
+            // إضافة مستمعي الأحداث لأزرار اللغة
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    setActiveLanguage(lang);
+                    localStorage.setItem('primosyr-lang', lang);
+                });
+            });
+            
+            // دالة لتعيين اللغة النشطة
+            function setActiveLanguage(lang) {
+                // تحديث أزرار اللغة
+                langBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+                });
+                
+                // تحديث محتوى اللغة
+                langContents.forEach(content => {
+                    content.style.display = content.classList.contains('lang-' + lang) ? 'block' : 'none';
+                });
+                
+                // تحديث اتجاه الصفحة وسمة اللغة
+                if (lang === 'ar') {
+                    document.documentElement.dir = 'rtl';
+                    document.documentElement.lang = 'ar';
+                } else {
+                    document.documentElement.dir = 'ltr';
+                    document.documentElement.lang = 'en';
+                }
+                
+                // إعادة تشغيل الرسوم المتحركة
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.style.animation = 'none';
+                    setTimeout(() => {
+                        el.style.animation = '';
+                    }, 10);
+                });
+            }
+            
+            // تحسين عداد التنازل
+            const countdownDate = new Date();
+            countdownDate.setDate(countdownDate.getDate() + 30);
+            countdownDate.setHours(12, 45, 30); // 12:45:30
+            
+            function updateCountdown() {
+                const now = new Date();
+                const diff = countdownDate - now;
+                
+                if (diff <= 0) {
+                    document.querySelectorAll('.countdown').forEach(countdown => {
+                        countdown.innerHTML = '<div class="countdown-title">' + 
+                            (document.documentElement.lang === 'ar' ? 
+                             'تم إطلاق الموقع بنجاح!' : 
+                             'The website has been successfully launched!') + 
+                            '</div>';
+                    });
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.querySelectorAll('.countdown-value').forEach((el, index) => {
+                    if (index % 4 === 0) el.textContent = days.toString().padStart(2, '0');
+                    if (index % 4 === 1) el.textContent = hours.toString().padStart(2, '0');
+                    if (index % 4 === 2) el.textContent = minutes.toString().padStart(2, '0');
+                    if (index % 4 === 3) el.textContent = seconds.toString().padStart(2, '0');
+                });
+            }
+            
+            // تحديث العداد كل ثانية
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+            
+            // تحسين الرسوم المتحركة عند التمرير
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.fade-in');
+                
+                elements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        el.style.opacity = 1;
+                        el.style.visibility = 'visible';
+                    }
+                });
+            };
+            
+            // تهيئة الرسوم المتحركة
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = 0;
+                el.style.visibility = 'hidden';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+            
+            // وظيفة زر سياسة الخصوصية
+            const showPrivacyBtn = document.getElementById('show-privacy');
+            const showPrivacyBtnEn = document.getElementById('show-privacy-en');
+            
+            function showPrivacyPolicy() {
+                alert('صفحة سياسة الخصوصية سوف تكون متاحة قريباً. في الوقت الحالي، يمكنك التواصل معنا عبر البريد الإلكتروني للحصول على مزيد من المعلومات.');
+            }
+            
+            if (showPrivacyBtn) {
+                showPrivacyBtn.addEventListener('click', showPrivacyPolicy);
+            }
+            
+            if (showPrivacyBtnEn) {
+                showPrivacyBtnEn.addEventListener('click', showPrivacyPolicy);
+            }
+            
+            // تحسينات أداء Cloudflare
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered: ', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed: ', error);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
